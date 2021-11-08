@@ -68,13 +68,13 @@ export class Router {
      */
 
     // check if the function exists
-    if (!this[page]()){
-      console.log("ERROR: Function does not exist!");
+    if (!this[page]){
+      console.eror("Function does not exist!");
       return;
     }
     
     // setting hash
-    var hash;
+    let hash;
     if (page == 'home') {
       hash = '';
     } else {
@@ -83,12 +83,10 @@ export class Router {
 
     // check if statePopped is false and window.location.hash match `hash`
     if (!statePopped && window.location.hash != hash) {
-      window.addEventListener('popstate', (event) => {
-        history.pushState(event.state, '', window.location.origin + hash);
-      });
-      
+        history.pushState(page, '', window.location.origin + hash);
     }
     
+    // finally, call the stored function for the given page
     this[page]();
   }
 }
