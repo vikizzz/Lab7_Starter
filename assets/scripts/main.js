@@ -110,7 +110,7 @@ function createRecipeCards() {
       document.querySelector('recipe-expand').data = recipeData[recipes[i]];
     });
     bindRecipeCard(recipeCard, page);
-    
+
     // add the class 'hidden' to every recipe card with an index greater than 2
     if (i > 2) {
       recipeCard.classList.add('hidden');
@@ -185,6 +185,11 @@ function bindEscKey() {
    * if the escape key is pressed, use your router to navigate() to the 'home'
    * page. This will let us go back to the home page from the detailed page.
    */
+  document.addEventListener('keydown', (event) => {
+    if (event.key === "Escape"){
+      router.navigate('home');
+    }
+  });
 }
 
 /**
@@ -206,4 +211,11 @@ function bindPopstate() {
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
+  document.addEventListener('popstate', (event) => {
+    if (!event.state){
+      router.navigate('home', true);
+    } else {
+      router.navigate(event.state, true);
+    }
+  });
 }
