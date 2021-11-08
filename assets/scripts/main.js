@@ -187,7 +187,7 @@ function bindEscKey() {
    */
   document.addEventListener('keydown', e => {
     if (e.key === "Escape"){
-      router.navigate('home');
+      router.navigate('home', true);
     }
   });
 }
