@@ -84,7 +84,8 @@ export class Router {
     // check if statePopped is false and window.location.hash match `hash`
     if (!statePopped && window.location.hash != hash) {
       const url = new URL(window.location);
-      history.pushState(page, '', url + hash);
+      url.hash = hash
+      history.pushState(page, '', url);
     }
     
     // finally, call the stored function for the given page
